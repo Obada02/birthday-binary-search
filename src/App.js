@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { dayNumberToDate, formatDate } from './utils/dateConversion';
 import './App.css';
+import FlipCounter from "./components /FlipCounter";
 
 function App() {
   const [low, setLow] = useState(null);
@@ -62,6 +63,8 @@ function App() {
 
   return (
       <div className="container">
+        <FlipCounter value={attempts} maxDigits={2} />
+
         <h1>🎂 Birthday Search 🎂</h1>
         {!guess && !completed && (
             <button className="start-button" onClick={handleStart}>

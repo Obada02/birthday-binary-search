@@ -1,13 +1,21 @@
 /* src/App.css */
+body, html {
+  height: 100%; 
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f0f0;
+}
 
 .container {
   max-width: 600px;
-  margin: 0 auto;
-  text-align: center;
   padding: 40px 20px;
+  text-align: center;
   font-family: Arial, sans-serif;
   background-color: #f9f9f9;
   border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
@@ -27,12 +35,12 @@ h1 {
 
 .start-button,
 .restart-button {
-  background-color: #4CAF50;
+  background-color: #563232;
   color: white;
 }
 
 .button-group button {
-  background-color: #008CBA;
+  background-color: #563232;
   color: white;
 }
 
