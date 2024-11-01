@@ -1,8 +1,6 @@
-// src/App.js
-
 import React, { useState } from 'react';
 import { dayNumberToDate, formatDate } from './utils/dateConversion';
-import './App.css'; // Optional: For styling
+import './App.css';
 
 function App() {
   const [low, setLow] = useState(null);
@@ -17,13 +15,12 @@ function App() {
     setLow(1);
     setHigh(365);
     setGuess(null);
-    setAttempts(0);
+    setAttempts(10);
     setMessage('');
     setCompleted(false);
-    setTimeout(() => makeGuess(1, 365), 500); // Initial guess after a short delay
+    setTimeout(() => makeGuess(1, 365), 500);
   };
 
-  // Make a guess based on current low and high
   const makeGuess = (currentLow, currentHigh) => {
     if (currentLow > currentHigh) {
       setMessage("Error: Inconsistent answers. Please restart.");
@@ -36,7 +33,6 @@ function App() {
     setHigh(currentHigh);
   };
 
-  // Handle user's response
   const handleResponse = (response) => {
     let newLow = low;
     let newHigh = high;
@@ -46,12 +42,12 @@ function App() {
     } else if (response === 'after') {
       newLow = guess + 1;
     } else if (response === 'correct') {
-      setMessage(`🎉 Your birthday is ${formatDate(dayNumberToDate(guess))}! Found in ${attempts + 1} attempts.`);
+      setMessage(`🎉 Your birthday is ${formatDate(dayNumberToDate(guess))}! with remaining ${attempts} attempts.`);
       setCompleted(true);
       return;
     }
 
-    setAttempts(prev => prev + 1);
+    setAttempts(prev => prev - 1);
 
     if (newLow > newHigh) {
       setMessage("❌ Error: Inconsistent answers. Please restart.");
@@ -66,7 +62,7 @@ function App() {
 
   return (
       <div className="container">
-        <h1>🎂 Birthday Binary Search 🎂</h1>
+        <h1>🎂 Birthday Search 🎂</h1>
         {!guess && !completed && (
             <button className="start-button" onClick={handleStart}>
               Start Guessing
@@ -84,7 +80,7 @@ function App() {
                 <button onClick={() => handleResponse('after')}>After</button>
               </div>
               <div className="info">
-                <p>Attempt: {attempts + 1}</p>
+                <p>Remaining attempts: {attempts}</p>
                 <p>
                   Current Range: {formatDate(dayNumberToDate(low))} to {formatDate(dayNumberToDate(high))}
                 </p>
